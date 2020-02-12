@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hilbert Curve(Hilbert space-filling curve)</title>
+    <link rel="stylesheet" href="demo/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Hilbert Curve</h1>
+        <p>
+            A Hilbert curve(Hilbert space-filling curve) is a geometric continuous fractal space-filling curve. Enjoy!
+        </p>  
+      </header>
+      <main>
+        <div class="control">
+          <label><span id="hilbertOrderValue" data-postfix=". " style="width:24px;">1</span> Order</label>
+          <div class="">
+              <input type="range" id="hilbertOrder" min="1" max="8" value="1" step="1" data-shared-with="#hilbertOrderValue" />
+          </div>
+        </div>        
+        <div class="control">
+            <label>
+                <span>Visit </span>
+                <span id="hilbertDisplayPointsValue" data-postfix=" points" style="width: 24px;">2</span> of 
+                <span id="hilbertCapacityValue" data-postfix=" points" style="width: 24px;">4</span>,
+            </label>
+            <div class="">
+                <input type="range" id="hilbertDisplayPoints" min="2" max="4" value="4" step="1" />
+            </div>
+        </div>            
+        <div id="hilbertContainer"></div>
+      </main>
+      <footer>
+        &copy; 2020 - <a href="https://github.com/hallojoe">GitHub</a> <a href="https://www.linkedin.com/in/casperkorsgaard/">LinkedIn</a>  
+      </footer>
+    </div>
+    <script src="/dist/hilbertcurve.bundle.js"></script>    
+  </body>
+</html>

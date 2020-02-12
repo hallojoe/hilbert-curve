@@ -1,0 +1,190 @@
+// // settings 
+// // ========
+// $range-enable-themes: true; 
+// $range-enable-sizes: true;
+
+// helpers
+// =======
+$range-track-base-color: #fff;
+$range-thumb-base-color: rgba(100, 100, 100, .9);
+ 
+// input 
+// =====
+$range-width: 100%;
+$range-height: auto;
+
+// track 
+// =====
+$range-track-width: 100%;
+$range-track-height: 16px;
+$range-track-background: $range-track-base-color;
+$range-track-border-width: 1px;
+$range-track-border-style: solid;
+$range-track-border-color: darken($range-track-base-color, 20%);
+$range-track-border-radius: 0px;
+$range-track-box-shadow-h-offset: 0;
+$range-track-box-shadow-v-offset: 0;
+$range-track-box-shadow-blur: 0;
+$range-track-box-shadow-spread: 0;
+$range-track-box-shadow-color: adjust-color($color: $range-track-base-color, $alpha: -0.4);
+
+// track pseudo
+// ============
+
+// :focus
+$range-track-background-focus: $range-track-background;            
+$range-track-border-width-focus: $range-track-border-width;
+$range-track-border-style-focus: $range-track-border-style;
+$range-track-border-color-focus: $range-track-border-color;
+$range-track-box-shadow-color-focus: $range-track-box-shadow-color;
+
+// thumb
+// =====
+
+$range-thumb-width: 32px;
+$range-thumb-height: 32px;
+$range-thumb-background-size: 100% 100%;
+$range-thumb-background: $range-thumb-base-color;
+$range-thumb-border-width: 1px;
+$range-thumb-border-style: solid;
+$range-thumb-border-color: $range-track-base-color;
+$range-thumb-border-radius: 0%;
+$range-thumb-cursor: pointer;
+
+$range-thumb-margin-top: auto;
+
+// important for ms
+$range-track-margin-for-ie: (($range-thumb-height/2) - (($range-track-height ) / 2));
+
+$range-thumb-box-shadow-h-offset: 0;
+$range-thumb-box-shadow-v-offset: 0;
+$range-thumb-box-shadow-blur: 0px;
+$range-thumb-box-shadow-spread: 2px;
+$range-thumb-box-shadow-color: adjust-color($color: $range-thumb-base-color, $alpha: -0.4);
+
+// thumb pseudo
+// ============
+
+// :active
+// active has no webkit say, so using :hover as active on ms and moz
+
+// :focus
+$range-thumb-background-focus: darken($range-thumb-background, 10%);            
+$range-thumb-border-width-focus: $range-thumb-border-width;
+$range-thumb-border-style-focus: $range-thumb-border-style;
+$range-thumb-border-color-focus: green;
+$range-thumb-box-shadow-color-focus: $range-thumb-box-shadow-color;
+
+// :hover
+$range-thumb-background-hover: darken($range-thumb-background, 10%);              
+$range-thumb-border-width-hover: $range-thumb-border-width;
+$range-thumb-border-style-hover: $range-thumb-border-style;
+$range-thumb-border-color-hover: darken($range-thumb-border-color, 10%);
+$range-thumb-box-shadow-color-hover: darken($range-thumb-box-shadow-color, 10%);
+
+
+// variables taken from bs4
+// used for theming - if enabled
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// https://github.com/twbs/bootstrap/blob/2ac2a5a91e2958a367c46a61d05162f640457db5/scss/_variables.scss#L8
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900
+  ),
+  $grays
+);
+
+// https://github.com/twbs/bootstrap/blob/2ac2a5a91e2958a367c46a61d05162f640457db5/scss/_variables.scss#L37
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+// https://github.com/twbs/bootstrap/blob/2ac2a5a91e2958a367c46a61d05162f640457db5/scss/_variables.scss#L78
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "dark":       $dark
+  ),
+  $theme-colors
+);
+
+// https://github.com/twbs/bootstrap/blob/2ac2a5a91e2958a367c46a61d05162f640457db5/scss/_variables.scss#L48
+$colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    "blue":       $blue,
+    "indigo":     $indigo,
+    "purple":     $purple,
+    "pink":       $pink,
+    "red":        $red,
+    "orange":     $orange,
+    "yellow":     $yellow,
+    "green":      $green,
+    "teal":       $teal,
+    "cyan":       $cyan,
+    "white":      $white,
+    "gray":       $gray-600,
+    "gray-dark":  $gray-800
+  ),
+  $colors
+);
+
+// https://github.com/twbs/bootstrap/blob/2ac2a5a91e2958a367c46a61d05162f640457db5/scss/_variables.scss#L97
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold:  150 !default;
+
+// https://github.com/twbs/bootstrap/blob/41fcd13d3e0c96ec3565ead21164d27a2f1b7a4c/scss/_variables.scss#L100
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark:             $gray-900 !default;
+$yiq-text-light:            $white !default;

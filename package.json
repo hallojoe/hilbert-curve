@@ -1,0 +1,37 @@
+{
+  "name": "hilbert-curve",
+  "version": "1.0.0",
+  "description": "A Hilbert curve (also known as a Hilbert space-filling curve) is a continuous fractal space-filling curve.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "develpment": "webpack-dev-server --mode development",
+    "production": "webpack-dev-server --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hallojoe/hilbert-curve.git"
+  },
+  "keywords": [
+    "Hilbert",
+    "Hilbert-curve",
+    "Hilbert-space-filling-curve",
+    "Hilbert_curve",
+    "Hilbert_space_filling_curve",
+    "Hilbert curve",
+    "Hilbert space filling curve"
+  ],
+  "author": "Casper Korsgaard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hallojoe/hilbert-curve/issues"
+  },
+  "homepage": "https://github.com/hallojoe/hilbert-curve#readme",
+  "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

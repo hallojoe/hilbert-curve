@@ -1,0 +1,19 @@
+﻿@import "_root.scss";
+
+.container {
+  width: var(--container-width);
+  margin: 0 auto;
+}
+
+[data-prefix]:after {
+  content: attr(data-prefix);
+}
+
+[data-postfix]:after {
+  content: attr(data-postfix);
+}
+
+@import "range-css/_variables.scss";
+@import "range-css/_mixins.scss";
+@include colorization();
+@include proportions();

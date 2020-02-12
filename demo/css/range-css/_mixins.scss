@@ -1,0 +1,292 @@
+@mixin make-track-proportions(
+  $width: $range-track-width,
+  $height: $range-track-height,
+  $border-width: $range-track-border-width
+) {
+  box-sizing: border-box;
+  width: $width;
+  height: $height;
+  border-width: $border-width;
+}
+
+@mixin make-thumb-proportions(
+  $width: $range-thumb-width,
+  $height: $range-thumb-height,
+  $border-width: $range-thumb-border-width,
+  $box-shadow-spread: $range-thumb-box-shadow-spread,
+  $box-shadow-color: $range-thumb-box-shadow-color
+) {
+  box-sizing: border-box;
+  @include make-box-shadow($color: $box-shadow-color, $spread: $box-shadow-spread);
+  width: $width;
+  height: $height;
+  border-width: $border-width;
+}
+
+@mixin make-track-colorization(
+  $box-shadow-spread: $range-track-box-shadow-spread,
+  $box-shadow-color: $range-track-box-shadow-color,
+  $background: $range-track-background,
+  $border-style: $range-track-border-style,
+  $border-color: $range-track-border-color,
+  $border-radius: $range-track-border-radius
+) {
+  background: $background;
+  border-style: $border-style;
+  border-color: $border-color;
+  border-radius: $border-radius;
+  @include make-box-shadow($spread: $box-shadow-spread, $color: $box-shadow-color);
+}
+
+@mixin make-thumb-colorization(
+  $box-shadow-spread: $range-thumb-box-shadow-spread,
+  $box-shadow-color: adjust-color($color: $range-thumb-box-shadow-color, $alpha: -0.5),
+  $background: $range-thumb-background,
+  $background-size: $range-thumb-background-size,
+  $border-radius: $range-thumb-border-radius,
+  $border-style: $range-thumb-border-style,
+  $border-color: $range-thumb-border-color
+) {
+  background: $background;
+  background-size: $background-size;
+  border-radius: $border-radius;
+  border-style: $border-style;
+  border-color: $border-color;
+
+  @include make-box-shadow($color: $box-shadow-color, $spread: $box-shadow-spread);
+
+  // don't merge these selectors -ms won't apply if merged
+  &:focus {
+    border-color: darken($border-color, 10%);
+    background: lighten($background, 10%);
+  }
+  &:active {
+    border-color: darken($border-color, 10%);
+    background: lighten($background, 10%);
+  }
+  &:hover {
+    border-color: darken($border-color, 10%);
+    background: lighten($background, 10%);
+  }
+}
+
+@mixin make-box-shadow($h-offset: 0, $v-offset: 0, $spread: 0, $blur: 0, $color: transparent, $important: important) {
+  box-shadow: $h-offset $v-offset $blur $spread $color;
+
+  $color: darken($color, 7.5%);
+  // don't merge these selectors -ms won't apply if merged
+  &:focus {
+    box-shadow: $h-offset $v-offset $blur $spread $color;
+  }
+  &:active {
+    box-shadow: $h-offset $v-offset $blur $spread $color;
+  }
+  &:hover {
+    box-shadow: $h-offset $v-offset $blur $spread $color;
+  }
+}
+
+@mixin make-border($width: 1px, $style: solid, $color: rgba(255, 255, 255, 0.5)) {
+  border: $width $style $color;
+  &:hover,
+  &:active,
+  &:focus {
+    border: $width $style adjust-color($color: $color, $alpha: 0.8);
+  }
+}
+
+@mixin proportions($name: null) {
+  input[type="range"]#{$name} {
+    // any
+    // ===
+    width: $range-width;
+    height: $range-thumb-height + ($range-thumb-box-shadow-spread * 2) + $range-thumb-box-shadow-blur;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    &:focus {
+      outline: none;
+    }
+
+    // -webkit
+    // =======
+    -webkit-appearance: none;
+
+    &::-webkit-slider-runnable-track {
+      @include make-track-proportions();
+    }
+
+    &::-webkit-slider-thumb {
+      @include make-thumb-proportions();
+      -webkit-appearance: none;
+      margin-top: calc(
+        calc(
+          -1 * calc(calc(calc(#{$range-thumb-height} - #{$range-track-height}) / 2)) - calc(calc(
+                  #{$range-track-border-width} * 1
+                ) + calc(#{$range-thumb-box-shadow-spread} * 0))
+        )
+      );
+
+      
+
+
+    }
+
+    // helper class for mimicing ms on webkit
+    &.ms {
+      &::-webkit-slider-runnable-track {
+        padding: 0 ($range-thumb-box-shadow-spread - $range-thumb-border-width);
+      }
+    }
+
+    // -moz
+    // ====
+
+    &::-moz-range-track {
+      @include make-track-proportions();
+    }
+
+    &::-moz-range-thumb {
+      @include make-thumb-proportions();
+    }
+
+    // hide the outline behind the border
+    &:-moz-focusring {
+      outline: 1px solid transparent;
+      outline-offset: -1px;
+    }
+
+    &::-moz-focus-outer {
+      border: 0;
+    }
+
+    // helper class for mimicing ms on moz
+    &.ms {
+      @supports (-moz-appearance: none) {
+        // mimic ms
+        border-right: $range-thumb-box-shadow-spread solid transparent;
+        border-left: $range-thumb-box-shadow-spread solid transparent;
+        max-width: 100%;
+      }
+      &::-moz-range-track {
+        // add extra width to track to get it to expand over border-left and right
+        width: calc(100% + calc(#{$range-thumb-box-shadow-spread} * 2));
+      }
+    }
+
+    // -ms
+    // ===
+
+    &::-ms-track {
+      @include make-track-proportions($border-width: 0!important);
+
+      background: transparent !important;
+      color: transparent !important;
+      border: none !important;
+      outline: none !important;
+
+      //margin: $range-track-margin-for-ie;
+
+      // edge
+      @supports (-ms-ime-align: auto) {
+        //margin: $range-track-margin-for-ie 0;
+      }
+    }
+
+    &::-ms-tooltip {
+      display: none;
+    }
+
+    &::-ms-fill-lower {
+      @include make-track-proportions($width: auto, $height: auto);
+      border-right-style: none;
+      border-top-left-radius: $range-track-border-radius;
+      border-bottom-left-radius: $range-track-border-radius;
+    }
+
+    &::-ms-fill-upper {
+      @include make-track-proportions($width: auto, $height: auto);
+      border-left-style: none;
+      border-top-right-radius: $range-track-border-radius;
+      border-bottom-right-radius: $range-track-border-radius;
+    }
+
+    &::-ms-thumb {
+      @include make-thumb-proportions();
+      // ensure room for box shadow
+      margin: 0 $range-thumb-box-shadow-spread;
+      // edge
+      @supports (-ms-ime-align: auto) {
+        & {
+          // ensure room for box shadow
+          padding: $range-thumb-box-shadow-spread !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin colorization($name: null) {
+  input[type="range"]#{$name} {
+    // -webkit
+    -webkit-appearance: none;
+    &::-webkit-slider-runnable-track {
+      @include make-track-colorization();
+    }
+    &::-webkit-slider-thumb {
+      @include make-thumb-colorization();
+    }
+    &:focus::-webkit-slider-runnable-track {
+      background: $range-track-background;
+    }
+    // -moz
+    &::-moz-range-track {
+      @include make-track-colorization();
+    }
+    &::-moz-range-thumb {
+      @include make-thumb-colorization();
+    }
+
+    // -ms
+    &::-ms-thumb {
+      @include make-thumb-colorization();
+    }
+    &::-ms-fill-lower {
+      @include make-track-colorization();
+    }
+    &::-ms-fill-upper {
+      @include make-track-colorization();
+    }
+  }
+
+  // @each $color, $value in $colors {
+  //   input[type="range"].#{$color} {
+  //     &::-webkit-slider-thumb {
+  //       @include make-thumb-colorization(
+  //         $box-shadow-spread: $range-thumb-box-shadow-spread,
+  //         $box-shadow-color: adjust-color($color: $value, $alpha: -.4),
+  //         $background: $value
+  //       );
+  //     }
+  //     &::-moz-range-thumb {
+  //       @include make-thumb-colorization(
+  //         $box-shadow-spread: $range-thumb-box-shadow-spread,
+  //         $box-shadow-color: adjust-color($color: $value, $alpha: -.4),
+  //         $background: $value
+  //       );
+  //     }
+  //     &::-ms-thumb {
+  //       @include make-thumb-colorization(
+  //         $box-shadow-spread: $range-thumb-box-shadow-spread,
+  //         $box-shadow-color: adjust-color($color: $value, $alpha: -.4),
+  //         $background: $value
+  //       );
+  //     }
+  //   }
+  // }
+
+
+
+}
+
