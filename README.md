@@ -6,4 +6,4 @@ The Hilbert curve was first described by the German mathematician David Hilbert 
 
 Demo: https://hallojoe.github.io/hilbert-curve/
 
-Source: https://en.wikipedia.org/wiki/Hilbert_curve
+Inspiration: https://en.wikipedia.org/wiki/Hilbert_curve
