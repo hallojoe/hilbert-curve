@@ -1,5 +1,12 @@
 class HilbertCurve {
 
+  /**
+   * @description Rotate quadrant
+   * @param n 
+   * @param point 
+   * @param rotateX 
+   * @param rotateY 
+   */
   static rotate(n: number, point: number[], rotateX: number, rotateY: number) {
     if (rotateY !== 0) return point;      
     if (rotateX === 1) point = [(n - 1) - point[0], (n - 1) - point[1]];    
@@ -7,8 +14,13 @@ class HilbertCurve {
 		return point;
   }  
 
-  // todo: make strong
+  /**
+   * @description Covert point to distance
+   * @param point    
+   * @param order 
+   */
   public static pointToDistance(point: number[], order: number): number {
+    // todo: make strong
     let 
       rotateX, // number | boolean
       rotateY, // number | boolean
@@ -16,6 +28,8 @@ class HilbertCurve {
     
     for (var s = order / 2; s >= 1; s /= 2) {
 
+      // todo: make strong
+      // if 
       rotateX = (point[0] & s) > 0;
       rotateY = (point[1] & s) > 0;
 
@@ -27,6 +41,11 @@ class HilbertCurve {
   }
     
 
+  /**
+   * @description Convert distance to point
+   * @param order 
+   * @param distance 
+   */
   public static distanceToPoint(order: number, distance: number): Array<number> {
     let 
       rotateX: number, 
@@ -41,6 +60,7 @@ class HilbertCurve {
     x = y = 0;
   
     for (s = 1; s < order; s *= 2) {      
+
       rotateX = 1 & (t / 2);
 			rotateY = 1 & (t ^ rotateX);
 
