@@ -5,3 +5,5 @@ A Hilbert curve (also known as a Hilbert space-filling curve) is a continuous fr
 The Hilbert curve was first described by the German mathematician David Hilbert in 1891, as a variant of the space-filling Peano curves discovered by Giuseppe Peano in 1890.
 
 Demo: https://hallojoe.github.io/hilbert-curve/
+
+Source: https://en.wikipedia.org/wiki/Hilbert_curve
