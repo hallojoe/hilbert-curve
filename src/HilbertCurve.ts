@@ -62,9 +62,9 @@ class HilbertCurve {
     for (s = 1; s < order; s *= 2) {      
 
       rotateX = 1 & (t / 2);
-			rotateY = 1 & (t ^ rotateX);
+      rotateY = 1 & (t ^ rotateX);
 
-      let point = this.rotate(s, [x, y], rotateX, rotateY);
+      const point = this.rotate(s, [x, y], rotateX, rotateY);
 
       [x, y] = [point[0], point[1]]; 
       [x, y] = [x + s * rotateX, y + s * rotateY];
