@@ -4,9 +4,7 @@
   "description": "A Hilbert curve (also known as a Hilbert space-filling curve) is a continuous fractal space-filling curve.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "develpment": "webpack-dev-server --mode development",
-    "production": "webpack-dev-server --mode production"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
